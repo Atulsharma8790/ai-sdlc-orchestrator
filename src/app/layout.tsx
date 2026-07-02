@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </IntegrationsProvider>
           </AuthProvider>
         </ThemeProvider>
-      </body>
+      <Suspense fallback={null}><PortfolioBar /></Suspense></body>
     </html>
   )
 }
