@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+/* ─── Theme tokens ───────────────────────────────────────────────────────────── */
+:root,
+[data-theme='dark'] {
+  --bg-base:        #0A0A0F;
+  --bg-card:        #111118;
+  --bg-elevated:    #18181F;
+  --bg-overlay:     rgba(0,0,0,0.7);
+  --text-primary:   #F0F0F5;
+  --text-secondary: #A0A0B0;
+  --text-dimmer:    #606070;
+  --border-default: #2A2A3A;
+  --accent-blue:    #3B82F6;
+  --accent-violet:  #8B5CF6;
+  --accent-grad:    linear-gradient(135deg, #3B82F6, #8B5CF6);
+}
+
+[data-theme='light'] {
+  --bg-base:        #F8F8FC;
+  --bg-card:        #FFFFFF;
+  --bg-elevated:    #F0F0F7;
+  --bg-overlay:     rgba(255,255,255,0.85);
+  --text-primary:   #111118;
+  --text-secondary: #444455;
+  --text-dimmer:    #888898;
+  --border-default: #DDDDE8;
+  --accent-blue:    #2563EB;
+  --accent-violet:  #7C3AED;
+  --accent-grad:    linear-gradient(135deg, #2563EB, #7C3AED);
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────────── */
+* { box-sizing: border-box; }
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dimmer); }
+
+/* ─── Placeholder ────────────────────────────────────────────────────────────── */
+::placeholder { color: var(--text-dimmer); opacity: 1; }
+::-webkit-input-placeholder { color: var(--text-dimmer); opacity: 1; }
+::-moz-placeholder { color: var(--text-dimmer); opacity: 1; }
+
+/* ─── Input utility ──────────────────────────────────────────────────────────── */
+.input-themed {
+  background-color: var(--bg-elevated);
+  color: var(--text-primary);
+  border-color: var(--border-default);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input-themed:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.25);
+}
+
+/* ─── Prose markdown in phase sections ──────────────────────────────────────── */
+.prose-section h2 { font-size: 1rem; font-weight: 700; margin: 1rem 0 0.4rem; color: var(--text-primary); }
+.prose-section h3 { font-size: 0.875rem; font-weight: 600; margin: 0.75rem 0 0.3rem; color: var(--text-secondary); }
+.prose-section p  { margin: 0.35rem 0; color: var(--text-secondary); font-size: 0.875rem; line-height: 1.6; }
+.prose-section ul, .prose-section ol { padding-left: 1.25rem; margin: 0.4rem 0; }
+.prose-section li { color: var(--text-secondary); font-size: 0.875rem; line-height: 1.55; margin-bottom: 0.2rem; }
+.prose-section strong { color: var(--text-primary); font-weight: 600; }
+.prose-section code { background: var(--bg-elevated); color: var(--accent-blue); padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.82em; }
+.prose-section pre  { background: var(--bg-elevated); border: 1px solid var(--border-default); padding: 0.75rem; border-radius: 0.5rem; overflow-x: auto; margin: 0.5rem 0; }
+.prose-section pre code { background: none; padding: 0; color: var(--text-secondary); font-size: 0.8rem; }
+.prose-section blockquote { border-left: 3px solid var(--accent-violet); padding-left: 0.75rem; color: var(--text-dimmer); font-style: italic; margin: 0.5rem 0; }
+
+/* ── Interactive element micro-polish ── */
+button, a, [role="button"] {
+  cursor: pointer !important;
+}
+button {
+  user-select: none;
+  -webkit-user-select: none;
+}
+button:disabled {
+  cursor: not-allowed !important;
+}
+button:not(:disabled):active {
+  transform: scale(0.97);
+}
+a {
+  text-decoration: none;
+}
+
+/* ── Focus ring ── */
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: 2px solid var(--accent-grad, #6366F1);
+  outline-offset: 2px;
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-default); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dimmer); }
+
+/* ── Smooth transitions on all interactive elements ── */
+button, a { transition: opacity 0.15s, transform 0.1s, box-shadow 0.15s; }
+button:not(:disabled):hover { opacity: 0.88; }
+
